@@ -1,7 +1,6 @@
 # 🔥 FINAL PROJECT (FP) 🔥
 ## Teknologi Komputasi Awan Kelas A
 ### Kelompok 4
-![WhatsApp Image 2023-12-14 at 23 04 30_570f7b57](https://github.com/waifuwetdream/fp-cloud-a2/assets/134349024/56f0a5c1-e9f0-4b74-aaba-4b45932e99e6)
 
 |          **Nama**            |  **NRP**   |
 |:----------------------------:|:----------:|
