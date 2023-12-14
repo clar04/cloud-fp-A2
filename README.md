@@ -39,7 +39,6 @@
 
 
 ## C. Permasalahan
-
 Anda adalah seorang lulusan Teknologi Informasi, sebagai ahli IT, salah satu kemampuan yang harus dimiliki adalah **Keampuan merancang, membangun, mengelola aplikasi berbasis komputer menggunakan layanan awan untuk memenuhi kebutuhan organisasi.**(menurut kurikulum IT ITS 2023 😙) 
 
 Pada suatu saat teman anda ingin mengajak anda memulai bisnis di bidang digital marketing, anda diberikan sebuah aplikasi berbasis API File: [app.py](/app.py) dengan spesifikasi sebagai berikut
@@ -60,8 +59,11 @@ Pada suatu saat teman anda ingin mengajak anda memulai bisnis di bidang digital 
 6. Buat container app untuk Flask![WhatsApp Image 2023-12-14 at 23 03 50_1b45531c](https://github.com/waifuwetdream/fp-cloud-a2/assets/134349024/eac4372a-7fd4-42dd-9e16-8967effd1979) ![WhatsApp Image 2023-12-14 at 23 12 05_74a4c5ac](https://github.com/waifuwetdream/fp-cloud-a2/assets/134349024/39c9ab37-eb24-4e21-acae-e2e9716a53aa)
 
 7. Buat volume mount untuk mongo storage mount dibuat agar azure dapat menyimpan semua data dari server container. Ini dibuat agar data container tidak hilang ketika server mati. Pertama, buat storage account.![WhatsApp Image 2023-12-15 at 00 08 03_70a3386e](https://github.com/clar04/cloud-fp-A2/assets/134349024/409fb3e3-e360-4ed0-a935-81bda87948f7) Ini mengarah ke resource group cloud-a2 yang telah dibuat, dengan instance details standard performance dan LRS redundancy.
+8. Setelah itu, buka env dari resource group, buka azure fileshare (di tab settings). Daftarkan fileshare yang telah dibuat kedalam env resource group. (storage account key didapatkan pada storage account ditab security -> access keys). Setelah itu, Di dalam container app mongodb, pilih tab application -> scale and replicas dan klik edit and deploy.![WhatsApp Image 2023-12-15 at 02 08 20_986786dc](https://github.com/clar04/cloud-fp-A2/assets/134349024/a4a0256e-15e3-47db-aba2-de245bbe6561)
 
 ## F. Pengujian Endpoint
+Ketika melakukan pengujian endpoint terjadi trouble
+![WhatsApp Image 2023-12-15 at 03 18 25_6f32d23a](https://github.com/clar04/cloud-fp-A2/assets/134349024/81979b6a-5a69-4f16-9f84-995714373244)
 
 ## G. Load Testing
 
