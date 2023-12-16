@@ -1,0 +1,32 @@
+[
+  {
+    "product": "Product1",
+    "quantity": 5,
+    "customer_name": "John Doe",
+    "customer_address": "123 Main St"
+  },
+  {
+    "product": "Product2",
+    "quantity": 3,
+    "customer_name": "Jane Smith",
+    "customer_address": "456 Oak St"
+  },
+  {
+    "product": "Product3",
+    "quantity": 4,
+    "customer_name": "Alice Johnson",
+    "customer_address": "789 Elm St"
+  },
+  {
+    "product": "Product4",
+    "quantity": 2,
+    "customer_name": "Bob Anderson",
+    "customer_address": "101 Pine St"
+  },
+  {
+    "product": "Product5",
+    "quantity": 1,
+    "customer_name": "Eve Brown",
+    "customer_address": "246 Cedar St"
+  }
+]
