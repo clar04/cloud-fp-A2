@@ -82,11 +82,9 @@ Tidak ada rancangan yang sempurna, yang ada hanyalah rancangan yang disesuaikan 
 
 9. ![WhatsApp Image 2023-12-15 at 08 38 18_f6ecc355](https://github.com/clar04/cloud-fp-A2/assets/134349024/58a91dba-3c5c-4ef5-8d63-2d7e1824accd)
 
-10. ![WhatsApp Image 2023-12-15 at 08 38 19_98382a28](https://github.com/clar04/cloud-fp-A2/assets/134349024/fac6a85a-a932-4e3e-a831-426cc547b3cb)
+10. ![WhatsApp Image 2023-12-15 at 08 38 19_efb2cff5](https://github.com/clar04/cloud-fp-A2/assets/134349024/46cf0d75-ac1d-4c73-ada6-20784193e2f5)
 
-11. ![WhatsApp Image 2023-12-15 at 08 38 19_efb2cff5](https://github.com/clar04/cloud-fp-A2/assets/134349024/46cf0d75-ac1d-4c73-ada6-20784193e2f5)
-
-12. Error![WhatsApp Image 2023-12-15 at 08 38 19_baefb969](https://github.com/clar04/cloud-fp-A2/assets/134349024/73ba96c1-10cf-4a8e-a686-674a81c609f7)
+11. Error![WhatsApp Image 2023-12-15 at 08 38 19_baefb969](https://github.com/clar04/cloud-fp-A2/assets/134349024/73ba96c1-10cf-4a8e-a686-674a81c609f7)
 
 ## F. Pengujian Endpoint
 Ketika melakukan pengujian endpoint terjadi trouble
