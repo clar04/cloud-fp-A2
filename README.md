@@ -44,57 +44,99 @@ Anda adalah seorang lulusan Teknologi Informasi, sebagai ahli IT, salah satu kem
 Pada suatu saat teman anda ingin mengajak anda memulai bisnis di bidang digital marketing, anda diberikan sebuah aplikasi berbasis API File: [app.py](/app.py) dengan spesifikasi sebagai berikut
 
 ## D. Rancangan Arsitektur dan Spesifikasi
-Tidak ada rancangan yang sempurna, yang ada hanyalah rancangan yang disesuaikan dengan kebutuhan sehingga dapat meminimalisir *impact* dari kekurangan dan memaksimalkan *impact* dari kelebihannya.
+![image](https://github.com/clar04/cloud-fp-A2/assets/134349024/be806b07-c1ba-454a-8402-39cdc920b1fa)
+Spesifikasi droplet yang kami buat adalah sebagai berikut
+| No | Nama          | CPU        | Memory | Disk  | Harga / bulan  |
+|----|---------------|------------|--------|-------|----------------|
+| 1  | Worker 1      | 1 AMD vCPU | 2 GB   | 50 GB | 14 US$         |
+| 2  | Worker 2      | 1 AMD vCPU | 2 GB   | 50 GB | 14 US$         |
+| 3  | Load Balancer | 1 AMD vCPU | 2 GB   | 50 GB | 14 US$         |
+|**Total**|          |            |        |       | **42 US$**     |
 
 ## E. Instalasi dan Implementasi Rancangan Arsitektur
-### Azure
-1. Buat registry container untuk image Flask![WhatsApp Image 2023-12-14 at 22 33 11_7306a2ed](https://github.com/waifuwetdream/fp-cloud-a2/assets/134349024/351a1bec-77e7-4e79-9715-fb6761af79ac)
+1. Create database cluster
+![WhatsApp Image 2023-12-15 at 08 38 15_2ae9110a](https://github.com/clar04/cloud-fp-A2/assets/134349024/345e97d9-d393-4643-9702-a899255ea2f0)
 
-2. Tick checkbox "Admin User" di pengaturan Access Keys untuk dapat memanggil repository![WhatsApp Image 2023-12-14 at 22 37 25_bc31224e](https://github.com/waifuwetdream/fp-cloud-a2/assets/134349024/db0f3cb8-9d06-4bbb-ab67-41c6c2e3851d)
+2. Set up connection ke database
+![WhatsApp Image 2023-12-15 at 08 38 15_4cee72bb](https://github.com/clar04/cloud-fp-A2/assets/134349024/91def3d5-9ecd-4fa5-a819-c5d910fef3d0)
 
-3. Set up virtual network![WhatsApp Image 2023-12-14 at 22 38 55_c70018e2](https://github.com/waifuwetdream/fp-cloud-a2/assets/134349024/eb1a5ef7-5c4f-4689-83b0-53913e584ae9)
+3. Connect dengan mongoDB compass
+![WhatsApp Image 2023-12-15 at 08 38 16_f77dd1b8](https://github.com/clar04/cloud-fp-A2/assets/134349024/cbd1b561-9865-48ae-ab1f-b5a2f0557aca)
 
-4. Buat container app untuk MongoDB dan app environment![WhatsApp Image 2023-12-14 at 22 48 46_e81c21f6](https://github.com/waifuwetdream/fp-cloud-a2/assets/134349024/a74aae5d-01d0-4994-8f1c-6292773dec00)
+4. Buat orders.json
+![WhatsApp Image 2023-12-15 at 08 38 16_28f88447](https://github.com/clar04/cloud-fp-A2/assets/134349024/7b9d7d44-d91f-4122-8e26-ea8d3b55803e)
 
-5. Virtual IP dibuat external exposed sehingga memungkinkan container app untuk diakses secara public menggunakan protocol tcp dan http![WhatsApp Image 2023-12-14 at 22 54 51_b53f38d5](https://github.com/waifuwetdream/fp-cloud-a2/assets/134349024/bf71d0c7-af75-41db-bcda-75956b3071e2)
+5. Import orders.json ke database
+![WhatsApp Image 2023-12-15 at 08 38 16_55f4ad5e](https://github.com/clar04/cloud-fp-A2/assets/134349024/90c2f40c-01c9-43b0-94f8-a261ca79942a)
 
-6. Buat container app untuk Flask![WhatsApp Image 2023-12-14 at 23 03 50_1b45531c](https://github.com/waifuwetdream/fp-cloud-a2/assets/134349024/eac4372a-7fd4-42dd-9e16-8967effd1979) ![WhatsApp Image 2023-12-14 at 23 12 05_74a4c5ac](https://github.com/waifuwetdream/fp-cloud-a2/assets/134349024/39c9ab37-eb24-4e21-acae-e2e9716a53aa)
+6. Jalankan API file [app.py](/app.py)![WhatsApp Image 2023-12-15 at 08 38 17_bbda7ea2](https://github.com/clar04/cloud-fp-A2/assets/134349024/968222fe-021b-4dd0-b874-31dfe08f51b1)
 
-7. Buat volume mount untuk mongo storage mount dibuat agar azure dapat menyimpan semua data dari server container. Ini dibuat agar data container tidak hilang ketika server mati. Pertama, buat storage account.![WhatsApp Image 2023-12-15 at 00 08 03_70a3386e](https://github.com/clar04/cloud-fp-A2/assets/134349024/409fb3e3-e360-4ed0-a935-81bda87948f7) Ini mengarah ke resource group cloud-a2 yang telah dibuat, dengan instance details standard performance dan LRS redundancy.
-8. Setelah itu, buka env dari resource group, buka azure fileshare (di tab settings). Daftarkan fileshare yang telah dibuat kedalam env resource group. (storage account key didapatkan pada storage account ditab security -> access keys). Setelah itu, Di dalam container app mongodb, pilih tab application -> scale and replicas dan klik edit and deploy.![WhatsApp Image 2023-12-15 at 02 08 20_986786dc](https://github.com/clar04/cloud-fp-A2/assets/134349024/a4a0256e-15e3-47db-aba2-de245bbe6561)
+7. Test dengan postman apakah API berjalan
+![WhatsApp Image 2023-12-15 at 08 38 17_cf7dfc65](https://github.com/clar04/cloud-fp-A2/assets/134349024/ced63a6c-1306-4281-b343-ac4255f3e5be)
 
-### DigitalOcean
-1. ![WhatsApp Image 2023-12-15 at 08 38 15_2ae9110a](https://github.com/clar04/cloud-fp-A2/assets/134349024/345e97d9-d393-4643-9702-a899255ea2f0)
+8. Pilih spesifikasi OS dan plan untuk droplet
+![WhatsApp Image 2023-12-15 at 08 38 18_56d96cce](https://github.com/clar04/cloud-fp-A2/assets/134349024/2297c72e-ec56-4511-9eea-ac67e722213f)
 
-2. ![WhatsApp Image 2023-12-15 at 08 38 15_4cee72bb](https://github.com/clar04/cloud-fp-A2/assets/134349024/91def3d5-9ecd-4fa5-a819-c5d910fef3d0)
+9. Sesuaikan spesifikasi droplet dan harga
+![WhatsApp Image 2023-12-15 at 08 38 18_f6ecc355](https://github.com/clar04/cloud-fp-A2/assets/134349024/58a91dba-3c5c-4ef5-8d63-2d7e1824accd)
 
-3. ![WhatsApp Image 2023-12-15 at 08 38 16_f77dd1b8](https://github.com/clar04/cloud-fp-A2/assets/134349024/cbd1b561-9865-48ae-ab1f-b5a2f0557aca)
+10. Buat master password untuk root
+![WhatsApp Image 2023-12-15 at 08 38 19_efb2cff5](https://github.com/clar04/cloud-fp-A2/assets/134349024/46cf0d75-ac1d-4c73-ada6-20784193e2f5)
 
-4. ![WhatsApp Image 2023-12-15 at 08 38 16_28f88447](https://github.com/clar04/cloud-fp-A2/assets/134349024/7b9d7d44-d91f-4122-8e26-ea8d3b55803e)
-
-5. ![WhatsApp Image 2023-12-15 at 08 38 16_55f4ad5e](https://github.com/clar04/cloud-fp-A2/assets/134349024/90c2f40c-01c9-43b0-94f8-a261ca79942a)
-
-6. ![WhatsApp Image 2023-12-15 at 08 38 17_bbda7ea2](https://github.com/clar04/cloud-fp-A2/assets/134349024/968222fe-021b-4dd0-b874-31dfe08f51b1)
-
-7. ![WhatsApp Image 2023-12-15 at 08 38 17_cf7dfc65](https://github.com/clar04/cloud-fp-A2/assets/134349024/ced63a6c-1306-4281-b343-ac4255f3e5be)
-
-8. ![WhatsApp Image 2023-12-15 at 08 38 18_56d96cce](https://github.com/clar04/cloud-fp-A2/assets/134349024/2297c72e-ec56-4511-9eea-ac67e722213f)
-
-9. ![WhatsApp Image 2023-12-15 at 08 38 18_f6ecc355](https://github.com/clar04/cloud-fp-A2/assets/134349024/58a91dba-3c5c-4ef5-8d63-2d7e1824accd)
-
-10. ![WhatsApp Image 2023-12-15 at 08 38 19_efb2cff5](https://github.com/clar04/cloud-fp-A2/assets/134349024/46cf0d75-ac1d-4c73-ada6-20784193e2f5)
-
-11. Error![WhatsApp Image 2023-12-15 at 08 38 19_baefb969](https://github.com/clar04/cloud-fp-A2/assets/134349024/73ba96c1-10cf-4a8e-a686-674a81c609f7)
 
 ## F. Pengujian Endpoint
-Ketika melakukan pengujian endpoint terjadi trouble
-![WhatsApp Image 2023-12-15 at 03 18 25_6f32d23a](https://github.com/clar04/cloud-fp-A2/assets/134349024/81979b6a-5a69-4f16-9f84-995714373244)
+Dilakukan pengujian all endpoint menggunakan postman
+1. Pengujian get all orders
+    - Worker 1
+    ![WhatsApp Image 2023-12-16 at 21 43 17_463d1490](https://github.com/clar04/cloud-fp-A2/assets/134349024/fbfd2b30-ee60-42db-aa36-916a4d224bb1)
+    - Worker 2
+    ![WhatsApp Image 2023-12-16 at 22 03 10_00a5db24](https://github.com/clar04/cloud-fp-A2/assets/134349024/789aec8c-b17d-4a55-a771-c8fff19d4751)
+2. Pengujian get by order id
+    - Worker 1
+    ![WhatsApp Image 2023-12-16 at 21 54 08_52efe0f1](https://github.com/clar04/cloud-fp-A2/assets/134349024/16f0ecf6-1a36-44a8-8759-3afc6e185fb1)
+    - Worker 2
+    ![WhatsApp Image 2023-12-16 at 22 04 57_65eba750](https://github.com/clar04/cloud-fp-A2/assets/134349024/246bca59-46cc-4d86-a29d-1a7adc8e4471)
+3. Pengujian create new order
+    - Worker 1
+    ![WhatsApp Image 2023-12-16 at 21 55 23_a3142684](https://github.com/clar04/cloud-fp-A2/assets/134349024/275f81ac-da26-4e81-a4f4-ec7a4a5884a9)
+    - Worker 2
+    ![WhatsApp Image 2023-12-16 at 22 06 05_2ad36aac](https://github.com/clar04/cloud-fp-A2/assets/134349024/253a11e5-5c33-41fd-8e54-2a6ff4a9561b)
+4. Pengujian update order by id
+    - Worker 1
+    ![WhatsApp Image 2023-12-16 at 21 56 38_3189f344](https://github.com/clar04/cloud-fp-A2/assets/134349024/bcff0a77-649b-426d-8b50-c8ca3ef04fd3)
+    - Worker 2
+    ![WhatsApp Image 2023-12-16 at 22 07 39_0e803573](https://github.com/clar04/cloud-fp-A2/assets/134349024/6727d577-325b-4596-9026-3397ba4bdbc6)
+5. Pengujian delete order by id
+    - Worker 1
+    ![WhatsApp Image 2023-12-16 at 21 58 02_7dec8167](https://github.com/clar04/cloud-fp-A2/assets/134349024/5e918107-f976-445b-8f98-c15d48467feb)
+    - Worker 2
+    ![WhatsApp Image 2023-12-16 at 22 08 25_8da289bf](https://github.com/clar04/cloud-fp-A2/assets/134349024/e5c59aa4-c6d5-41e5-88fd-e11660a70f1f)
 
 ## G. Load Testing
+1. Load balancing menggunakan droplet
+![WhatsApp Image 2023-12-17 at 10 30 25_adc80fea](https://github.com/clar04/cloud-fp-A2/assets/134349024/e48ca0a6-789e-4876-9797-d5f00b6a0ae7)
+    - Install nginx
+    ![WhatsApp Image 2023-12-17 at 10 30 45_25c1aa60](https://github.com/clar04/cloud-fp-A2/assets/134349024/015d13e0-e558-461d-8b9b-3f9f249d1ddd)
+    - Config nginx
+    ![WhatsApp Image 2023-12-17 at 10 31 02_75b5846c](https://github.com/clar04/cloud-fp-A2/assets/134349024/c1ed48a5-c7eb-4f83-b424-82df1c35c06a)
+    - Restart nginx
+    ![WhatsApp Image 2023-12-17 at 10 31 12_5cf64bec](https://github.com/clar04/cloud-fp-A2/assets/134349024/8cf78cdd-8623-4ba5-b0ba-1130916e98fc)
+    - Test load balance
+    ![WhatsApp Image 2023-12-17 at 10 31 21_3f84126e](https://github.com/clar04/cloud-fp-A2/assets/134349024/7777c5a2-a0a5-492a-b57f-c92047b43ab3)
+2. Locust testing dengan users 100, spawn rate 25, **maximum RPS 14,25**, **faiilure 0%**
+![WhatsApp Image 2023-12-17 at 10 38 04_ef81ea0e](https://github.com/clar04/cloud-fp-A2/assets/134349024/1b8a2056-ce02-42ca-9632-7446fdc2024d)
+3. Locust testing dengan spawn rate 50, user 100, **maximum RPS 10,5**, **failure 0%**
+![WhatsApp Image 2023-12-17 at 10 41 41_71d28410](https://github.com/clar04/cloud-fp-A2/assets/134349024/3a9c4fd4-2b21-4cef-93ce-ba2f6b68b198)
+4. Locust testing dengan users 100, spawn rate 100, **maximum RPS 27**, **failure 0%**
+![WhatsApp Image 2023-12-17 at 10 44 56_3903ec63](https://github.com/clar04/cloud-fp-A2/assets/134349024/e718e56b-7113-4199-9df9-de1601f9424e)
+
+Kami juga mencoba menggunakan load balancer dari DigitalOcean namun hasilnya menunjukkan **failure 100%** dengan users 250 dan spawn rate 25
+![WhatsApp Image 2023-12-17 at 10 52 32_05b2bec5](https://github.com/clar04/cloud-fp-A2/assets/134349024/b53c24c0-52f5-4dd8-8cb7-f054ae5449ca)
 
 ## H. Kesimpulan dan Saran
 ### Kesimpulan
 - Melakukan set up dan konfigurasi pada Azure relatif lebih kompleks dibanding DigitalOcean
 - Harga yang ditawarkan Azure lebih tinggi dibanding DigitalOcean; fitur yang disediakan Azure juga lebih banyak
+- Load Balancer yang disediakan DigitalOcean kurang *reliable*
 ### Saran
 Dari pengalaman kami selama menggeluti konfigurasi cloud ini, ada baiknya kita memberikan usaha terbaik dalam mengerjakan segala sesuatu. Namun jika hasilnya kurang sesuai jangan berkecil hati, mungkin sudah lelah.
